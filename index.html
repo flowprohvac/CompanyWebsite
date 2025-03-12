@@ -951,11 +951,11 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Your Phone">
-                        <textarea placeholder="How can we help you?" required></textarea>
+                    <form id="contactForm" action="https://formspree.io/f/myzeyorb" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Your Phone">
+                        <textarea name="message" placeholder="How can we help you?" required></textarea>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
