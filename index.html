@@ -1030,14 +1030,20 @@
                 }
             });
         });
-        
-        // Form submission (placeholder)
+
+        // Form submission with Formspree
         const contactForm = document.getElementById('contactForm');
-        
+
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you shortly.');
-            contactForm.reset();
+            // Don't prevent the default for Formspree forms
+            // Still show a nice loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerText;
+            submitButton.innerText = 'Sending...';
+            submitButton.disabled = true;
+    
+            // Let form submit happen normally to Formspree
+            // Formspree will handle the redirect back to your site
         });
     </script>
 </body>
