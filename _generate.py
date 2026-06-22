@@ -52,8 +52,10 @@ HEADER = """
 <header>
   <div class="container header-inner">
     <div class="logo">
-      <span class="logo-icon"><i class="fa-solid fa-wind"></i></span>
-      <a href="/"><span class="accent">Flow</span>ProHVAC</a>
+      <a href="/" aria-label="FlowProHVAC home">
+        <img src="/assets/logo-icon.png" alt="" width="40" height="40" style="width:40px;height:40px;max-width:40px;max-height:40px;display:block;" class="logo-mark" onerror="this.style.display='none'">
+        <span class="logo-text"><span class="accent">Flow</span>Pro<span class="accent-gold">HVAC</span></span>
+      </a>
     </div>
     <nav class="primary" aria-label="Primary">
       <ul>

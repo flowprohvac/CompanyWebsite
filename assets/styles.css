@@ -3,27 +3,28 @@
 */
 
 :root {
-  --royal-blue: #2b4cad;
-  --royal-blue-dark: #1b3384;
-  --royal-blue-darker: #122560;
-  --royal-blue-light: #5b78d2;
-  --royal-gold: #e6b422;
-  --royal-gold-light: #f5cc4d;
+  /* BRAND PALETTE — exact hex from FlowProHVAC logo */
+  --royal-blue: #1b3384;        /* primary brand blue */
+  --royal-blue-dark: #122560;   /* darker shade for gradient depth */
+  --royal-blue-darker: #0a1a4a; /* deepest for footer */
+  --royal-blue-light: #2b4cad;  /* slightly lighter for hover */
+  --royal-gold: #e6b422;        /* primary brand gold */
+  --royal-gold-light: #f5cc4d;  /* gold hover */
   --royal-gold-dark: #c99917;
   --white: #ffffff;
   --light-gray: #f6f8fb;
   --medium-gray: #e6e9ef;
   --border-gray: #d8dde6;
-  --text: #1f2433;
+  --text: #1b2138;              /* dark blue-black, readable + on-brand */
   --text-muted: #5a6275;
   --success: #1f9d55;
-  --gradient-blue: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-dark));
-  --shadow-sm: 0 2px 6px rgba(18, 37, 96, 0.06);
-  --shadow-md: 0 8px 24px rgba(18, 37, 96, 0.10);
-  --shadow-lg: 0 16px 40px rgba(18, 37, 96, 0.14);
+  --gradient-blue: linear-gradient(135deg, #1b3384, #0a1a4a);
+  --shadow-sm: 0 2px 6px rgba(27, 51, 132, 0.08);
+  --shadow-md: 0 8px 24px rgba(27, 51, 132, 0.12);
+  --shadow-lg: 0 16px 40px rgba(27, 51, 132, 0.16);
   --radius: 12px;
   --radius-sm: 8px;
-  --header-h: 82px;
+  --header-h: 72px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,12 +76,32 @@ header {
   height: var(--header-h);
   gap: 12px;
 }
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo a { color: var(--white); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.3px; text-decoration: none; }
+.logo { display: flex; align-items: center; }
+.logo a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo .logo-mark {
+  /* Triple-locked: HTML attrs + inline style + CSS — never blows up */
+  width: 40px !important;
+  height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  object-fit: contain;
+  flex: 0 0 40px;
+  display: block;
+  background: var(--white);
+  border-radius: 8px;
+  padding: 2px;
+}
+.logo .logo-text {
+  color: var(--white);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
 .logo .accent { color: var(--royal-gold); }
-.logo-icon { color: var(--royal-gold); font-size: 1.6rem; line-height: 1; }
-/* Defensive caps — if a logo image is ever swapped in, never let it blow up the header. */
-.logo img { max-height: 52px; width: auto; max-width: 240px; display: block; }
+.logo .accent-gold { color: var(--royal-gold); }
+/* Header gets a thin gold accent line for brand continuity */
+header { border-bottom: 3px solid var(--royal-gold); }
 
 nav.primary ul { list-style: none; display: flex; align-items: center; gap: 22px; margin: 0; }
 nav.primary li { margin: 0; }
@@ -228,6 +249,7 @@ nav.primary .dropdown a:hover { background: var(--light-gray); color: var(--roya
 .card {
   background: var(--white);
   border: 1px solid var(--border-gray);
+  border-top: 4px solid var(--royal-gold);
   border-radius: var(--radius);
   padding: 28px 24px;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
@@ -236,15 +258,16 @@ nav.primary .dropdown a:hover { background: var(--light-gray); color: var(--roya
   display: flex;
   flex-direction: column;
 }
-.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--royal-blue-light); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--royal-blue); border-top-color: var(--royal-gold); }
 .card .icon {
   font-size: 1.8rem;
   width: 56px; height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--royal-blue-light), var(--royal-blue));
-  color: var(--white);
+  background: var(--royal-blue);
+  color: var(--royal-gold);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 16px;
+  border: 2px solid var(--royal-gold);
 }
 .card h3 { color: var(--royal-blue); margin-bottom: 10px; }
 .card p { color: var(--text-muted); margin-bottom: 16px; }
@@ -256,6 +279,7 @@ nav.primary .dropdown a:hover { background: var(--light-gray); color: var(--roya
 .trust-strip {
   background: var(--white);
   border-bottom: 1px solid var(--border-gray);
+  border-top: 4px solid var(--royal-gold);
   padding: 20px 0;
 }
 .trust-strip .items {
@@ -319,6 +343,7 @@ nav.primary .dropdown a:hover { background: var(--light-gray); color: var(--roya
   background: var(--gradient-blue);
   color: var(--white);
   border-radius: var(--radius);
+  border-top: 4px solid var(--royal-gold);
   padding: 36px 32px;
   display: flex;
   flex-wrap: wrap;
@@ -475,14 +500,143 @@ footer .copyright {
 .small { font-size: 0.88rem; }
 .divider { height: 1px; background: var(--border-gray); margin: 32px 0; }
 
-@media (max-width: 600px) {
-  .section { padding: 56px 0; }
-  .cta-banner { flex-direction: column; align-items: flex-start; text-align: left; padding: 26px 22px; }
-}
-
 /* ===== HERO TWO-COLUMN LAYOUT ===== */
 .hero .container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
 @media (max-width: 900px) {
-  .hero .container { grid-template-columns: 1fr; gap: 28px; }
-  .hero-image { order: -1; max-width: 380px; margin: 0 auto; }
+  .hero .container { grid-template-columns: 1fr; gap: 24px; }
+  .hero-image { max-width: 360px; margin: 0 auto; }
+}
+
+/* ====================================================================
+   MOBILE POLISH — comprehensive tuning for phones (≤700px) and small (≤480px)
+   ==================================================================== */
+
+@media (max-width: 700px) {
+  :root { --header-h: 64px; }
+
+  /* Tighter horizontal padding */
+  .container, .container-sm { padding: 0 16px; }
+
+  /* Header: smaller logo, hide phone label (just icon), tap-friendly menu */
+  .logo a { font-size: 1.1rem; letter-spacing: 0; }
+  .logo-icon { font-size: 1.3rem; }
+  .header-cta { gap: 6px; }
+  .header-cta .call-link {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    background: var(--royal-gold);
+    color: var(--royal-blue-darker);
+    border-color: var(--royal-gold);
+  }
+  .menu-btn { font-size: 1.6rem; padding: 4px 8px; min-width: 44px; min-height: 44px; }
+
+  /* Hero: tighter padding, smaller H1, full-width buttons */
+  .hero { padding: 36px 0 48px; }
+  .hero h1 { font-size: 1.7rem; line-height: 1.2; }
+  .hero .lede { font-size: 1rem; margin-bottom: 18px; }
+  .hero .hero-stars { font-size: 1.15rem; margin-bottom: 8px; }
+  .hero .cta-row { display: flex; flex-direction: column; gap: 10px; }
+  .hero .cta-row .btn { width: 100%; padding: 14px 20px; font-size: 1.05rem; }
+  .hero .badges { gap: 6px; margin-top: 14px; }
+  .hero .badge { font-size: 0.78rem; padding: 5px 10px; }
+  .hero-image { max-width: 280px; }
+
+  /* Page-hero (interior pages) */
+  .page-hero { padding: 36px 0 28px; }
+  .page-hero h1 { font-size: 1.6rem; }
+  .page-hero p { font-size: 0.95rem; }
+  .page-hero .cta-row { flex-direction: column; }
+  .page-hero .cta-row .btn { width: 100%; }
+
+  /* Sections: less vertical padding */
+  .section { padding: 44px 0; }
+  .section-tight { padding: 28px 0; }
+  .section-head { margin-bottom: 28px; }
+  .section-head h2 { font-size: 1.5rem; }
+  .section-head p { font-size: 0.95rem; }
+
+  /* Trust strip: stack cleanly */
+  .trust-strip { padding: 14px 0; }
+  .trust-strip .items {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.88rem;
+  }
+  .trust-strip .items span { gap: 8px; }
+
+  /* Card grids: single column with breathing room */
+  .grid-3, .grid-4 { gap: 14px; }
+  .grid-2 { gap: 24px; }
+  .card { padding: 22px 18px; }
+  .card h3 { font-size: 1.1rem; }
+  .card p { font-size: 0.95rem; }
+  .card .icon { width: 48px; height: 48px; font-size: 1.4rem; margin-bottom: 12px; }
+
+  /* CTA banner: stack with bigger tap buttons */
+  .cta-banner { flex-direction: column; align-items: stretch; text-align: left; padding: 22px 18px; gap: 14px; }
+  .cta-banner h3 { font-size: 1.2rem; }
+  .cta-banner .actions { flex-direction: column; gap: 8px; }
+  .cta-banner .actions .btn { width: 100%; }
+
+  /* Feature list (about page snippet): tighter */
+  .feature-list { grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+
+  /* Testimonials: single column, smaller text */
+  .testimonial { padding: 22px 18px; }
+  .testimonial p { font-size: 0.95rem; }
+
+  /* FAQ: wider summaries, more tap room */
+  .faq details { padding: 16px 18px; }
+  .faq summary { font-size: 0.98rem; padding: 4px 0; }
+  .faq p { font-size: 0.95rem; }
+
+  /* Service-area grid: 2 columns on mobile */
+  .area-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .area-grid a { padding: 12px 10px; font-size: 0.95rem; }
+
+  /* Contact form: tap-friendly */
+  form.contact-form { padding: 20px 18px; }
+  form.contact-form input,
+  form.contact-form textarea,
+  form.contact-form select { padding: 14px 14px; font-size: 1rem; }
+  form.contact-form button { padding: 16px 24px; font-size: 1.05rem; }
+
+  /* Contact info items: tighter */
+  .contact-info .item { gap: 12px; margin-bottom: 14px; }
+
+  /* Prose pages: better mobile reading */
+  .prose p, .prose li { font-size: 1rem; line-height: 1.6; }
+  .prose h2 { font-size: 1.35rem; margin-top: 1.6rem; }
+  .prose h3 { font-size: 1.1rem; }
+  .prose ul { margin-left: 1.1rem; }
+
+  /* Footer: single column, larger tap targets */
+  footer { padding: 36px 0 16px; }
+  footer .grid { grid-template-columns: 1fr; gap: 24px; }
+  footer h4 { margin-bottom: 10px; }
+  footer a { font-size: 0.95rem; padding: 4px 0; display: inline-block; }
+  footer li { margin-bottom: 6px; }
+
+  /* Sticky call CTA: bigger and clearer */
+  .sticky-call { padding: 16px; font-size: 1.05rem; }
+  body { padding-bottom: 64px; }
+
+  /* H1/H2/H3 globally tightened on mobile */
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.1rem; }
+
+  /* Defensive: any rogue image can never exceed container */
+  img { max-width: 100%; height: auto; }
+}
+
+@media (max-width: 480px) {
+  /* Extra-small screens: even tighter */
+  .hero h1 { font-size: 1.5rem; }
+  .hero .lede { font-size: 0.95rem; }
+  .section-head h2 { font-size: 1.3rem; }
+  .container, .container-sm { padding: 0 14px; }
+  .logo a { font-size: 1rem; }
+  .header-cta .call-link { padding: 6px 10px; font-size: 0.88rem; }
 }
