@@ -75,14 +75,12 @@ header {
   height: var(--header-h);
   gap: 12px;
 }
-.logo { display: flex; align-items: center; }
-.logo a { display: flex; align-items: center; text-decoration: none; line-height: 0; }
-.logo .logo-img-wide { height: 52px; width: auto; display: block; }
-.logo .logo-img-narrow { display: none; height: 40px; width: auto; }
-@media (max-width: 760px) {
-  .logo .logo-img-wide { display: none; }
-  .logo .logo-img-narrow { display: block; }
-}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo a { color: var(--white); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.3px; text-decoration: none; }
+.logo .accent { color: var(--royal-gold); }
+.logo-icon { color: var(--royal-gold); font-size: 1.6rem; line-height: 1; }
+/* Defensive caps — if a logo image is ever swapped in, never let it blow up the header. */
+.logo img { max-height: 52px; width: auto; max-width: 240px; display: block; }
 
 nav.primary ul { list-style: none; display: flex; align-items: center; gap: 22px; margin: 0; }
 nav.primary li { margin: 0; }
