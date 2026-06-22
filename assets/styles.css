@@ -76,29 +76,41 @@ header {
   height: var(--header-h);
   gap: 12px;
 }
-.logo { display: flex; align-items: center; }
-.logo a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo { display: flex; align-items: center; flex-shrink: 0; min-width: 0; }
+.logo a {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
 .logo .logo-mark {
-  /* Triple-locked: HTML attrs + inline style + CSS — never blows up */
+  /* Triple-locked size — even a 4000px file renders at 40x40 */
   width: 40px !important;
   height: 40px !important;
   max-width: 40px !important;
   max-height: 40px !important;
+  min-width: 40px;
   object-fit: contain;
   flex: 0 0 40px;
-  display: block;
+  display: inline-block;
   background: var(--white);
   border-radius: 8px;
-  padding: 2px;
+  padding: 3px;
+  vertical-align: middle;
 }
 .logo .logo-text {
+  display: inline-block;
   color: var(--white);
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 800;
   letter-spacing: -0.3px;
   line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
 }
-.logo .accent { color: var(--royal-gold); }
+.logo .accent,
 .logo .accent-gold { color: var(--royal-gold); }
 /* Header gets a thin gold accent line for brand continuity */
 header { border-bottom: 3px solid var(--royal-gold); }
@@ -512,23 +524,39 @@ footer .copyright {
    ==================================================================== */
 
 @media (max-width: 700px) {
-  :root { --header-h: 64px; }
+  :root { --header-h: 60px; }
 
   /* Tighter horizontal padding */
-  .container, .container-sm { padding: 0 16px; }
+  .container, .container-sm { padding: 0 14px; }
 
-  /* Header: smaller logo, hide phone label (just icon), tap-friendly menu */
-  .logo a { font-size: 1.1rem; letter-spacing: 0; }
-  .logo-icon { font-size: 1.3rem; }
-  .header-cta { gap: 6px; }
+  /* Header: keep logo + text inline + readable. Wordmark must NOT wrap. */
+  .header-inner { gap: 8px; }
+  .logo a { gap: 8px; }
+  .logo .logo-mark {
+    width: 36px !important;
+    height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
+    min-width: 36px;
+    flex: 0 0 36px;
+    padding: 2px;
+  }
+  .logo .logo-text {
+    font-size: 1.05rem;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+  }
+  /* Compact call button + menu button so the logo never gets squeezed */
+  .header-cta { gap: 6px; flex-shrink: 0; }
   .header-cta .call-link {
-    padding: 8px 12px;
-    font-size: 0.95rem;
+    padding: 8px 11px;
+    font-size: 0.85rem;
     background: var(--royal-gold);
     color: var(--royal-blue-darker);
     border-color: var(--royal-gold);
   }
-  .menu-btn { font-size: 1.6rem; padding: 4px 8px; min-width: 44px; min-height: 44px; }
+  .header-cta .call-link i { font-size: 0.95rem; }
+  .menu-btn { font-size: 1.5rem; padding: 4px 8px; min-width: 40px; min-height: 40px; flex-shrink: 0; }
 
   /* Hero: tighter padding, smaller H1, full-width buttons */
   .hero { padding: 36px 0 48px; }
@@ -636,7 +664,16 @@ footer .copyright {
   .hero h1 { font-size: 1.5rem; }
   .hero .lede { font-size: 0.95rem; }
   .section-head h2 { font-size: 1.3rem; }
-  .container, .container-sm { padding: 0 14px; }
-  .logo a { font-size: 1rem; }
-  .header-cta .call-link { padding: 6px 10px; font-size: 0.88rem; }
+  .container, .container-sm { padding: 0 12px; }
+  .logo .logo-text { font-size: 0.95rem; }
+  .logo .logo-mark { width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; flex: 0 0 32px; }
+  .header-cta .call-link { padding: 7px 9px; font-size: 0.78rem; }
+  .header-cta .call-link i { margin: 0; }
+}
+
+/* Extra-narrow phones (≤360px like older iPhone SE): icon-only call button */
+@media (max-width: 360px) {
+  .header-cta .call-link span { display: none; }
+  .header-cta .call-link { padding: 8px 10px; font-size: 1rem; }
+  .logo .logo-text { font-size: 0.9rem; }
 }
